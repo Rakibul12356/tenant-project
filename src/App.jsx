@@ -9,18 +9,20 @@ import { ProtectedRoute, GuestRoute } from "./utils/RouteGuards";
 // Layouts
 import PublicLayout from "./components/layout/PublicLayout";
 import UserLayout from "./components/layout/UserLayout";
+import OwnerLayout from "./components/layout/OwnerLayout";
 import AdminLayout from "./components/layout/AdminLayout";
 
 // Public Pages
-import Home from "./pages/public/Home";
-import About from "./pages/public/About";
-import Products from "./pages/public/Products";
-import Contact from "./pages/public/Contact";
-import Login from "./pages/public/Login";
-import Register from "./pages/public/Register";
+import Home from "./pages/public/Home/Home";
+import About from "./pages/public/About/About";
+import Products from "./pages/public/Products/Products";
+import Contact from "./pages/public/Contact/Contact";
+import Login from "./pages/public/Login/Login";
+import Register from "./pages/public/Register/Register";
 
 // User Pages
 import UserDashboard from "./pages/user/UserDashboard";
+import OwnerDashboard from "./pages/user/OwnerDashboard";
 import UserProfile from "./pages/user/UserProfile";
 import PlaceholderPage from "./pages/PlaceholderPage";
 
@@ -80,11 +82,11 @@ export default function App() {
               }
             />
 
-            {/* User Dashboard Routes */}
+            {/* Tenant Dashboard Routes */}
             <Route
               path="/dashboard"
               element={
-                <ProtectedRoute>
+                <ProtectedRoute requiredRole="tenant">
                   <UserLayout />
                 </ProtectedRoute>
               }
@@ -96,6 +98,21 @@ export default function App() {
               <Route path="notifications" element={<PlaceholderPage title="Notifications" desc="Your notifications will appear here." />} />
               <Route path="settings" element={<PlaceholderPage title="Settings" desc="Account settings coming soon." />} />
               <Route path="help" element={<PlaceholderPage title="Help & Support" desc="Support resources coming soon." />} />
+            </Route>
+
+            {/* Owner/Bariwala Dashboard Routes */}
+            <Route
+              path="/properties"
+              element={
+                <ProtectedRoute requiredRole="owner">
+                  <OwnerLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route index element={<OwnerDashboard />} />
+              <Route path="add" element={<PlaceholderPage title="নতুন বাড়ি যোগ করুন" desc="আপনার নতুন প্রপার্টি এখানে যোগ করুন" />} />
+              <Route path="profile" element={<UserProfile />} />
+              <Route path="settings" element={<PlaceholderPage title="সেটিংস" desc="আপনার সেটিংস এখানে পরিবর্তন করুন" />} />
             </Route>
 
             {/* Admin Dashboard Routes */}

@@ -14,10 +14,10 @@ npm run dev
 
 ## 🔐 Demo Credentials
 
-| Role  | Email             | Password  | Redirect       |
-|-------|-------------------|-----------|----------------|
-| User  | user@demo.com     | user123   | /dashboard     |
-| Admin | admin@demo.com    | admin123  | /admin         |
+| Role  | Email          | Password | Redirect   |
+| ----- | -------------- | -------- | ---------- |
+| User  | user@demo.com  | user123  | /dashboard |
+| Admin | admin@demo.com | admin123 | /admin     |
 
 ## 📁 Project Structure
 
@@ -50,19 +50,19 @@ src/
 
 ## 🛠 Tech Stack
 
-| Package           | Version | Purpose                        |
-|-------------------|---------|--------------------------------|
-| React             | 19      | UI library                     |
-| React Router DOM  | 7       | Client-side routing            |
-| Tailwind CSS      | 4       | Utility-first styling          |
-| Axios             | 1.7     | HTTP client (ready to use)     |
-| React Toastify    | 10      | Toast notifications            |
-| Lucide React      | 0.400   | Icons                          |
-| Vite              | 6       | Build tool                     |
+| Package          | Version | Purpose                    |
+| ---------------- | ------- | -------------------------- |
+| React            | 19      | UI library                 |
+| React Router DOM | 7       | Client-side routing        |
+| Tailwind CSS     | 4       | Utility-first styling      |
+| Axios            | 1.7     | HTTP client (ready to use) |
+| React Toastify   | 10      | Toast notifications        |
+| Lucide React     | 0.400   | Icons                      |
+| Vite             | 6       | Build tool                 |
 
 ## 🎨 Theme System
 
-The project uses CSS variables defined in `index.css` and toggled via `data-theme` on `<html>`. 
+The project uses CSS variables defined in `index.css` and toggled via `data-theme` on `<html>`.
 
 Custom utilities like `.bg-primary`, `.text-secondary`, `.border-theme` are available everywhere.
 
@@ -96,7 +96,9 @@ export default api;
 
 ## 📱 Responsive Breakpoints
 
-| Breakpoint | Width   | Sidebar behavior          |
-|------------|---------|---------------------------|
-| Mobile     | < 1024px | Hidden, toggle with ☰    |
-| Desktop    | ≥ 1024px | Always visible (static)   |
+| Breakpoint | Width     | Sidebar behavior        |
+| ---------- | --------- | ----------------------- |
+| Mobile     | < 1024px  | Hidden, toggle with ☰  |
+| Desktop    | ≥ 1024px | Always visible (static) |
+
+[BoltUI - React Boilerplate](https://spectacular-concha-408ede.netlify.app/)

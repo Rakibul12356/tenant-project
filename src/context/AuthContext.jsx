@@ -3,24 +3,38 @@ import { toast } from "react-toastify";
 
 const AuthContext = createContext(null);
 
-// Dummy users database
+// Dummy users database - Bariwala Management System
 const DUMMY_USERS = [
   {
     id: 1,
-    name: "Alex Johnson",
-    email: "user@demo.com",
-    password: "user123",
-    role: "user",
-    avatar: "AJ",
+    name: "মোহাম্মদ করিম",
+    email: "owner@demo.com",
+    password: "owner123",
+    role: "owner",
+    avatar: "MK",
     joinedDate: "Jan 2024",
+    properties: 5,
+    tenants: 8,
+    revenue: "৳ 85,000",
   },
   {
     id: 2,
-    name: "Sarah Admin",
+    name: "রফিকুল ইসলাম",
+    email: "tenant@demo.com",
+    password: "tenant123",
+    role: "tenant",
+    avatar: "RI",
+    joinedDate: "Feb 2024",
+    propertyName: "উত্তরা বাড়ি - ফ্ল্যাট ৫/A",
+    rentAmount: "৳ 15,000",
+  },
+  {
+    id: 3,
+    name: "Admin System",
     email: "admin@demo.com",
     password: "admin123",
     role: "admin",
-    avatar: "SA",
+    avatar: "AS",
     joinedDate: "Dec 2023",
   },
 ];
@@ -64,7 +78,7 @@ export function AuthProvider({ children }) {
     }
   };
 
-  const register = async (name, email, password) => {
+  const register = async (name, email, password, accountType = "tenant", referralCode = "") => {
     setLoading(true);
     await new Promise((r) => setTimeout(r, 900));
 
@@ -79,14 +93,23 @@ export function AuthProvider({ children }) {
       id: Date.now(),
       name,
       email,
-      role: "user",
+      role: accountType === "owner" ? "owner" : "tenant",
       avatar: name.slice(0, 2).toUpperCase(),
       joinedDate: new Date().toLocaleDateString("en-US", { month: "short", year: "numeric" }),
     };
 
+    if (accountType === "owner") {
+      newUser.properties = 0;
+      newUser.tenants = 0;
+      newUser.revenue = "৳ 0";
+    } else {
+      newUser.propertyName = "Pending";
+      newUser.rentAmount = "৳ 0";
+    }
+
     setUser(newUser);
     localStorage.setItem("auth_user", JSON.stringify(newUser));
-    toast.success("Account created! Welcome aboard 🎉");
+    toast.success(`${accountType === "owner" ? "বারিওয়ালা" : "ভাড়াটে"} অ্যাকাউন্ট তৈরি হয়েছে! স্বাগতম 🎉`);
     setLoading(false);
     return { success: true, user: newUser };
   };

@@ -33,7 +33,14 @@ export function GuestRoute({ children }) {
   if (loading) return null;
 
   if (user) {
-    return <Navigate to={user.role === "admin" ? "/admin" : "/dashboard"} replace />;
+    // Role-based redirect
+    if (user.role === "admin") {
+      return <Navigate to="/admin" replace />;
+    } else if (user.role === "owner") {
+      return <Navigate to="/properties" replace />;
+    } else {
+      return <Navigate to="/dashboard" replace />;
+    }
   }
 
   return children;
