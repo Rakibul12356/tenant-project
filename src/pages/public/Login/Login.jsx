@@ -18,13 +18,19 @@ export default function Login() {
     e.preventDefault();
     const result = await login(form.email, form.password);
     if (result.success) {
-      const dest = from || (result.user.role === "admin" ? "/admin" : "/dashboard");
+      let dest = from;
+      if (!dest) {
+        if (result.user.role === "admin") dest = "/admin";
+        else if (result.user.role === "owner") dest = "/owner";
+        else dest = "/tenant";
+      }
       navigate(dest, { replace: true });
     }
   };
 
   const fillDemo = (type) => {
-    if (type === "user") setForm({ email: "user@demo.com", password: "user123" });
+    if (type === "owner") setForm({ email: "owner@demo.com", password: "owner123" });
+    else if (type === "user") setForm({ email: "tenant@demo.com", password: "tenant123" });
     else setForm({ email: "admin@demo.com", password: "admin123" });
   };
 
@@ -53,6 +59,13 @@ export default function Login() {
               className="flex-1 py-2 rounded-lg text-xs font-medium border border-theme text-secondary hover:text-primary hover:bg-secondary transition-all"
             >
               Fill User Demo
+            </button>
+            <button
+              type="button"
+              onClick={() => fillDemo("owner")}
+              className="flex-1 py-2 rounded-lg text-xs font-medium border border-theme text-secondary hover:text-primary hover:bg-secondary transition-all"
+            >
+              Fill Owner Demo
             </button>
             <button
               type="button"

@@ -6,16 +6,16 @@ import {
 import { useAuth } from "../../context/AuthContext";
 
 const NAV_ITEMS = [
-  { icon: LayoutDashboard, label: "Overview", to: "/dashboard" },
-  { icon: ShoppingBag, label: "My Orders", to: "/dashboard/orders" },
-  { icon: Heart, label: "Wishlist", to: "/dashboard/wishlist" },
-  { icon: Bell, label: "Notifications", to: "/dashboard/notifications" },
-  { icon: User, label: "Profile", to: "/dashboard/profile" },
-  { icon: Settings, label: "Settings", to: "/dashboard/settings" },
+  { icon: LayoutDashboard, label: "Overview", to: "/tenant" },
+  { icon: ShoppingBag, label: "My Orders", to: "/tenant/orders" },
+  { icon: Heart, label: "Wishlist", to: "/tenant/wishlist" },
+  { icon: Bell, label: "Notifications", to: "/tenant/notifications" },
+  { icon: User, label: "Profile", to: "/tenant/profile" },
+  { icon: Settings, label: "Settings", to: "/tenant/settings" },
 ];
 
 const BOTTOM_ITEMS = [
-  { icon: HelpCircle, label: "Help & Support", to: "/dashboard/help" },
+  { icon: HelpCircle, label: "Help & Support", to: "/tenant/help" },
 ];
 
 export default function UserSidebar({ open, onClose }) {
@@ -77,7 +77,7 @@ export default function UserSidebar({ open, onClose }) {
               <NavLink
                 key={to}
                 to={to}
-                end={to === "/dashboard"}
+                end={to === "/tenant"}
                 onClick={onClose}
                 className={({ isActive }) =>
                   `sidebar-item ${isActive ? "active" : ""}`

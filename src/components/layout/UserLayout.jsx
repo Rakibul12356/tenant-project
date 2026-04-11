@@ -4,13 +4,13 @@ import UserSidebar from "./UserSidebar";
 import DashboardHeader from "./DashboardHeader";
 
 const TITLES = {
-  "/dashboard": "Overview",
-  "/dashboard/orders": "My Orders",
-  "/dashboard/wishlist": "Wishlist",
-  "/dashboard/notifications": "Notifications",
-  "/dashboard/profile": "Profile",
-  "/dashboard/settings": "Settings",
-  "/dashboard/help": "Help & Support",
+  "/tenant": "Overview",
+  "/tenant/orders": "My Orders",
+  "/tenant/wishlist": "Wishlist",
+  "/tenant/notifications": "Notifications",
+  "/tenant/profile": "Profile",
+  "/tenant/settings": "Settings",
+  "/tenant/help": "Help & Support",
 };
 
 export default function UserLayout() {

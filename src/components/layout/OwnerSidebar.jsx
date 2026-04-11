@@ -6,13 +6,13 @@ import {
 import { useAuth } from "../../context/AuthContext";
 
 const NAV_ITEMS = [
-  { icon: LayoutDashboard, label: "ওভারভিউ", to: "/properties" },
-  { icon: Building2, label: "আমার সম্পত্তি", to: "/properties" },
-  { icon: Users, label: "ভাড়াটে ম্যানেজমেন্ট", to: "/tenants" },
-  { icon: DollarSign, label: "রেন্ট & বিল", to: "/bills" },
-  { icon: FileText, label: "নোটিশ", to: "/notices" },
-  { icon: User, label: "প্রোফাইল", to: "/profile" },
-  { icon: Settings, label: "সেটিংস", to: "/settings" },
+  { icon: LayoutDashboard, label: "ওভারভিউ", to: "/owner" },
+  { icon: Building2, label: "আমার সম্পত্তি", to: "/owner/properties" },
+  { icon: Users, label: "ভাড়াটে ম্যানেজমেন্ট", to: "/owner/tenants" },
+  { icon: DollarSign, label: "রেন্ট & বিল", to: "/owner/bills" },
+  { icon: FileText, label: "নোটিশ", to: "/owner/notices" },
+  { icon: User, label: "প্রোফাইল", to: "/owner/profile" },
+  { icon: Settings, label: "সেটিংস", to: "/owner/settings" },
 ];
 
 export default function OwnerSidebar({ open, onClose }) {
@@ -74,7 +74,7 @@ export default function OwnerSidebar({ open, onClose }) {
               <NavLink
                 key={to}
                 to={to}
-                end={to === "/properties"}
+                end={to === "/owner"}
                 onClick={onClose}
                 className={({ isActive }) =>
                   `sidebar-item ${isActive ? "active" : ""}`

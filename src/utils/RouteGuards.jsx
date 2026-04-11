@@ -37,9 +37,9 @@ export function GuestRoute({ children }) {
     if (user.role === "admin") {
       return <Navigate to="/admin" replace />;
     } else if (user.role === "owner") {
-      return <Navigate to="/properties" replace />;
+      return <Navigate to="/owner" replace />;
     } else {
-      return <Navigate to="/dashboard" replace />;
+      return <Navigate to="/tenant" replace />;
     }
   }
 

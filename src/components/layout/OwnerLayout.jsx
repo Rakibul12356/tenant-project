@@ -4,13 +4,14 @@ import OwnerSidebar from "./OwnerSidebar";
 import DashboardHeader from "./DashboardHeader";
 
 const TITLES = {
-  "/properties": "আমার সম্পত্তি",
-  "/properties/add": "নতুন সম্পত্তি যোগ করুন",
-  "/tenants": "আমার ভাড়াটে",
-  "/bills": "রেন্ট & বিল ম্যানেজমেন্ট",
-  "/notices": "নোটিশ ম্যানেজমেন্ট",
-  "/profile": "প্রোফাইল",
-  "/settings": "সেটিংস",
+  "/owner": "ওভারভিউ",
+  "/owner/properties": "আমার সম্পত্তি",
+  "/owner/add": "নতুন সম্পত্তি যোগ করুন",
+  "/owner/tenants": "ভাড়াটে ম্যানেজমেন্ট",
+  "/owner/bills": "রেন্ট & বিল ম্যানেজমেন্ট",
+  "/owner/notices": "নোটিশ ম্যানেজমেন্ট",
+  "/owner/profile": "প্রোফাইল",
+  "/owner/settings": "সেটিংস",
 };
 
 export default function OwnerLayout() {
