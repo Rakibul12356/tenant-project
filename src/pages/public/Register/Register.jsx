@@ -3,6 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, Zap, UserPlus, Crown, Building2 } from "lucide-react";
 import { useAuth } from "../../../context/AuthContext";
 
+const getDashboardPath = (role) => {
+  if (role === "admin") return "/admin";
+  if (role === "owner") return "/owner";
+  return "/tenant";
+};
+
 export default function Register() {
   const { register, loading } = useAuth();
   const navigate = useNavigate();
@@ -31,7 +37,7 @@ export default function Register() {
     e.preventDefault();
     if (!validate()) return;
     const result = await register(form.name, form.email, form.password, accountType, form.referralCode);
-    if (result.success) navigate("/dashboard", { replace: true });
+    if (result.success) navigate(getDashboardPath(result.user.role), { replace: true });
   };
 
   const Field = ({ name, label, type = "text", placeholder, extra }) => (

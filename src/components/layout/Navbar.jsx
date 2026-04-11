@@ -11,6 +11,12 @@ const NAV_LINKS = [
   { to: "/contact", label: "Contact" },
 ];
 
+const getDashboardPath = (role) => {
+  if (role === "admin") return "/admin";
+  if (role === "owner") return "/owner";
+  return "/tenant";
+};
+
 export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
   const { user, logout } = useAuth();
@@ -91,7 +97,7 @@ export default function Navbar() {
               {user ? (
                 <div className="hidden md:flex items-center gap-2">
                   <Link
-                    to={user.role === "admin" ? "/admin" : "/dashboard"}
+                    to={getDashboardPath(user.role)}
                     className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-secondary hover:text-primary rounded-lg hover:bg-secondary transition-all"
                   >
                     <LayoutDashboard size={15} />
@@ -169,7 +175,7 @@ export default function Navbar() {
               {user ? (
                 <>
                   <Link
-                    to={user.role === "admin" ? "/admin" : "/dashboard"}
+                    to={getDashboardPath(user.role)}
                     onClick={() => setMobileOpen(false)}
                     className="px-4 py-3 rounded-lg text-sm font-medium text-secondary hover:text-primary hover:bg-secondary flex items-center gap-2"
                   >

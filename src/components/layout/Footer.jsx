@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Zap, Github, Twitter, Linkedin, Mail, Heart } from "lucide-react";
+import { useAuth } from "../../context/AuthContext";
 
 const FOOTER_LINKS = {
   Product: [
@@ -11,7 +12,7 @@ const FOOTER_LINKS = {
   Account: [
     { label: "Login", to: "/login" },
     { label: "Register", to: "/register" },
-    { label: "Dashboard", to: "/dashboard" },
+    { label: "Dashboard", to: "/login" },
   ],
   Legal: [
     { label: "Privacy Policy", to: "#" },
@@ -28,6 +29,22 @@ const SOCIALS = [
 ];
 
 export default function Footer() {
+  const { user } = useAuth();
+  const dashboardLink = user
+    ? user.role === "admin"
+      ? "/admin"
+      : user.role === "owner"
+      ? "/owner"
+      : "/tenant"
+    : "/login";
+
+  const footerLinks = {
+    ...FOOTER_LINKS,
+    Account: FOOTER_LINKS.Account.map((link) =>
+      link.label === "Dashboard" ? { ...link, to: dashboardLink } : link
+    ),
+  };
+
   return (
     <footer
       className="mt-auto border-t border-theme"
@@ -66,7 +83,7 @@ export default function Footer() {
           </div>
 
           {/* Links */}
-          {Object.entries(FOOTER_LINKS).map(([category, links]) => (
+          {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
               <h3 className="font-semibold text-primary text-sm mb-4">{category}</h3>
               <ul className="flex flex-col gap-2.5">

@@ -89,9 +89,9 @@ export default function AdminSidebar({ open, onClose }) {
 
         {/* Bottom */}
         <div className="px-3 py-4 border-t" style={{ borderColor: "#1e293b" }}>
-          <Link to="/dashboard" className="sidebar-item mb-1">
+          <Link to="/" className="sidebar-item mb-1">
             <LayoutDashboard size={17} />
-            <span>User Dashboard</span>
+            <span>Public Home</span>
           </Link>
           <button
             onClick={logout}

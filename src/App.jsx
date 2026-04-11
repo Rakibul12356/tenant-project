@@ -1,8 +1,8 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { AuthProvider } from "./context/AuthContext";
+import { AuthProvider, useAuth } from "./context/AuthContext";
 import { ThemeProvider, useTheme } from "./context/ThemeContext";
 import { ProtectedRoute, GuestRoute } from "./utils/RouteGuards";
 
@@ -21,8 +21,8 @@ import Login from "./pages/public/Login/Login";
 import Register from "./pages/public/Register/Register";
 
 // User Pages
-import UserDashboard from "./pages/user/UserDashboard";
-import OwnerDashboard from "./pages/user/OwnerDashboard";
+import UserDashboard from "./pages/tenant/UserDashboard";
+import OwnerDashboard from "./pages/owner/OwnerDashboard";
 import UserProfile from "./pages/user/UserProfile";
 import PlaceholderPage from "./pages/PlaceholderPage";
 
@@ -47,6 +47,15 @@ function ToastWrapper() {
       toastStyle={{ borderRadius: "12px", fontSize: "14px" }}
     />
   );
+}
+
+function DashboardRedirect() {
+  const { user } = useAuth();
+
+  if (!user) return <Navigate to="/login" replace />;
+  if (user.role === "admin") return <Navigate to="/admin" replace />;
+  if (user.role === "owner") return <Navigate to="/owner" replace />;
+  return <Navigate to="/tenant" replace />;
 }
 
 export default function App() {
@@ -79,6 +88,16 @@ export default function App() {
                 <GuestRoute>
                   <Register />
                 </GuestRoute>
+              }
+            />
+
+            {/* Legacy route support */}
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <DashboardRedirect />
+                </ProtectedRoute>
               }
             />
 
