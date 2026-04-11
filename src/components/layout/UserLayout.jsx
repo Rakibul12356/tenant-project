@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import UserSidebar from "./UserSidebar";
+import DashboardSidebar from "./DashboardSidebar";
+import { tenantSidebarConfig } from "./sidebarConfigs";
 import DashboardHeader from "./DashboardHeader";
 
 const TITLES = {
@@ -20,7 +21,7 @@ export default function UserLayout() {
 
   return (
     <div className="flex h-screen overflow-hidden bg-secondary">
-      <UserSidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <DashboardSidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} config={tenantSidebarConfig} />
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         <DashboardHeader onMenuClick={() => setSidebarOpen(true)} title={title} />
         <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">

@@ -3,41 +3,41 @@ import { useAuth } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 
 const STATS = [
-  { icon: Building2, label: "মোট বাড়ি", value: "5", color: "#3b82f6" },
-  { icon: Users, label: "মোট ভাড়াটে", value: "8", color: "#10b981" },
-  { icon: DollarSign, label: "মাসিক আয়", value: "৳ 85,000", color: "#f59e0b" },
-  { icon: FileText, label: "পেন্ডিং বিল", value: "3", color: "#ef4444" },
+  { icon: Building2, label: "Total Properties", value: "5", color: "#3b82f6" },
+  { icon: Users, label: "Total Tenants", value: "8", color: "#10b981" },
+  { icon: DollarSign, label: "Monthly Income", value: "৳ 85,000", color: "#f59e0b" },
+  { icon: FileText, label: "Pending Bills", value: "3", color: "#ef4444" },
 ];
 
 const PROPERTIES = [
-  { id: 1, name: "উত্তরা বাড়ি", address: "উত্তরা, ঢাকা", beds: 3, tenants: 2, rent: "৳ 30,000", status: "Active" },
-  { id: 2, name: "গুলশান অ্যাপার্টমেন্ট", address: "গুলশান, ঢাকা", beds: 2, tenants: 1, rent: "৳ 25,000", status: "Active" },
-  { id: 3, name: "ধানমন্ডির বাড়ি", address: "ধানমন্ডি, ঢাকা", beds: 4, tenants: 2, rent: "৳ 40,000", status: "Active" },
-  { id: 4, name: "মিরপুর ফ্ল্যাট", address: "মিরপুর, ঢাকা", beds: 2, tenants: 1, rent: "৳ 18,000", status: "Vacant" },
-  { id: 5, name: "ডেমরা পরিবার", address: "ডেমরা, ঢাকা", beds: 1, tenants: 2, rent: "৳ 12,000", status: "Active" },
+  { id: 1, name: "Uttara House", address: "Uttara, Dhaka", beds: 3, tenants: 2, rent: "৳ 30,000", status: "Active" },
+  { id: 2, name: "Gulshan Apartment", address: "Gulshan, Dhaka", beds: 2, tenants: 1, rent: "৳ 25,000", status: "Active" },
+  { id: 3, name: "Dhanmondi House", address: "Dhanmondi, Dhaka", beds: 4, tenants: 2, rent: "৳ 40,000", status: "Active" },
+  { id: 4, name: "Mirpur Flat", address: "Mirpur, Dhaka", beds: 2, tenants: 1, rent: "৳ 18,000", status: "Vacant" },
+  { id: 5, name: "Demra Family House", address: "Demra, Dhaka", beds: 1, tenants: 2, rent: "৳ 12,000", status: "Active" },
 ];
 
 const RECENT_NOTICES = [
-  { id: 1, property: "উত্তরা বাড়ি", title: "রেন্ট পেমেন্ট রিমাইন্ডার", date: "মার্চ 28", priority: "High" },
-  { id: 2, property: "গুলশান অ্যাপার্টমেন্ট", title: "মেইনটেন্যান্স কাজ সম্পন্ন", date: "মার্চ 25", priority: "Low" },
-  { id: 3, property: "মিরপুর ফ্ল্যাট", title: "নতুন ভাড়াটে নিয়োগ", date: "মার্চ 22", priority: "Medium" },
+  { id: 1, property: "Uttara House", title: "Rent Payment Reminder", date: "Mar 28", priority: "High" },
+  { id: 2, property: "Gulshan Apartment", title: "Maintenance Work Completed", date: "Mar 25", priority: "Low" },
+  { id: 3, property: "Mirpur Flat", title: "New Tenant Assigned", date: "Mar 22", priority: "Medium" },
 ];
 
 const PENDING_BILLS = [
-  { id: 1, tenant: "রফিকুল ইসলাম", property: "উত্তরা বাড়ি", amount: "৳ 15,000", dueDate: "মার্চ 31", status: "Overdue" },
-  { id: 2, tenant: "ফারহান রহিম", property: "গুলশান অ্যাপার্টমেন্ট", amount: "৳ 25,000", dueDate: "এপ্রিল 5", status: "Due Soon" },
-  { id: 3, tenant: "আয়শা আক্তার", property: "ধানমন্ডি", amount: "৳ 18,000", dueDate: "এপ্রিল 10", status: "Pending" },
+  { id: 1, tenant: "Rafikul Islam", property: "Uttara House", amount: "৳ 15,000", dueDate: "Mar 31", status: "Overdue" },
+  { id: 2, tenant: "Farhan Rahim", property: "Gulshan Apartment", amount: "৳ 25,000", dueDate: "Apr 5", status: "Due Soon" },
+  { id: 3, tenant: "Ayesha Akter", property: "Dhanmondi House", amount: "৳ 18,000", dueDate: "Apr 10", status: "Pending" },
 ];
 
 export default function OwnerDashboard() {
   const { user } = useAuth();
 
   const handleAddProperty = () => {
-    toast.info("নতুন বাড়ি যোগ করা শীঘ্রই আসছে...");
+    toast.info("Add property feature is coming soon...");
   };
 
   const handleManageTenant = (propertyId) => {
-    toast.info(`প্রপার্টি #${propertyId} এর জন্য ভাড়াটে ম্যানেজ করা হচ্ছে...`);
+    toast.info(`Managing tenants for property #${propertyId}...`);
   };
 
   return (
@@ -46,16 +46,16 @@ export default function OwnerDashboard() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-xl font-bold text-primary">
-            স্বাগতম, {user?.name?.split(" ")[0]} 👋
+            Welcome, {user?.name?.split(" ")[0]} 👋
           </h2>
-          <p className="text-secondary text-sm mt-0.5">আপনার সব বাড়ি, ভাড়াটে এবং বিল ম্যানেজ করুন</p>
+          <p className="text-secondary text-sm mt-0.5">Manage all your properties, tenants, and bills</p>
         </div>
         <button
           onClick={handleAddProperty}
           className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-white font-semibold text-sm transition-all hover:opacity-90"
           style={{ backgroundColor: "var(--accent)" }}
         >
-          <Plus size={16} /> নতুন বাড়ি যোগ করুন
+          <Plus size={16} /> Add Property
         </button>
       </div>
 
@@ -81,17 +81,17 @@ export default function OwnerDashboard() {
           <div className="rounded-2xl border border-theme overflow-hidden" style={{ backgroundColor: "var(--bg-card)" }}>
             <div className="flex items-center justify-between px-5 py-4 border-b border-theme">
               <h3 className="font-semibold text-primary flex items-center gap-2">
-                <Building2 size={16} style={{ color: "var(--accent)" }} /> আমার বাড়িগুলি
+                <Building2 size={16} style={{ color: "var(--accent)" }} /> My Properties
               </h3>
               <span className="px-3 py-1 rounded-full text-xs font-semibold" style={{ backgroundColor: "var(--accent-light)", color: "var(--accent)" }}>
-                {PROPERTIES.length} টি
+                {PROPERTIES.length} Total
               </span>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-theme" style={{ backgroundColor: "var(--bg-secondary)" }}>
-                    {["বাড়ির নাম", "ঠিকানা", "ভাড়াটে", "মাসিক ভাড়া", "স্ট্যাটাস", "অ্যাকশন"].map((h) => (
+                    {["Property Name", "Address", "Tenants", "Monthly Rent", "Status", "Action"].map((h) => (
                       <th key={h} className="px-5 py-3 text-left text-xs font-semibold text-muted uppercase tracking-wider">
                         {h}
                       </th>
@@ -104,8 +104,18 @@ export default function OwnerDashboard() {
                       <td className="px-5 py-3.5">
                         <div className="flex items-center gap-2.5">
                           <div
-                            className="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0"
-                            style={{ backgroundColor: "var(--accent)" }}
+                            style={{
+                              backgroundColor: "var(--accent)",
+                              width: "1.75rem",
+                              height: "1.75rem",
+                              borderRadius: "9999px",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              color: "white",
+                              fontSize: "0.75rem",
+                              fontWeight: 700,
+                            }}
                           >
                             {p.name[0]}
                           </div>
@@ -124,7 +134,7 @@ export default function OwnerDashboard() {
                               : { color: "#f59e0b", backgroundColor: "#fef3c7" }
                           }
                         >
-                          {p.status === "Active" ? "সক্রিয়" : "খালি"}
+                          {p.status === "Active" ? "Active" : "Vacant"}
                         </span>
                       </td>
                       <td className="px-5 py-3.5">
@@ -133,7 +143,7 @@ export default function OwnerDashboard() {
                           className="text-xs font-medium text-white px-3 py-1 rounded-lg transition-all hover:opacity-90"
                           style={{ backgroundColor: "var(--accent)" }}
                         >
-                          ম্যানেজ
+                          Manage
                         </button>
                       </td>
                     </tr>
@@ -150,7 +160,7 @@ export default function OwnerDashboard() {
           <div className="rounded-2xl border border-theme overflow-hidden" style={{ backgroundColor: "var(--bg-card)" }}>
             <div className="flex items-center justify-between px-5 py-4 border-b border-theme">
               <h3 className="font-semibold text-primary flex items-center gap-2">
-                <AlertCircle size={16} style={{ color: "#ef4444" }} /> পেন্ডিং বিল
+                <AlertCircle size={16} style={{ color: "#ef4444" }} /> Pending Bills
               </h3>
             </div>
             <div className="p-4 space-y-3">
@@ -168,7 +178,7 @@ export default function OwnerDashboard() {
                           : { color: "#6366f1", backgroundColor: "#e0e7ff" }
                       }
                     >
-                      {bill.status === "Overdue" ? "বাধ্যতামূলক" : bill.status === "Due Soon" ? "শীঘ্রই" : "অপেক্ষমান"}
+                      {bill.status === "Overdue" ? "Overdue" : bill.status === "Due Soon" ? "Due Soon" : "Pending"}
                     </span>
                   </div>
                   <p className="text-xs text-secondary mb-1">{bill.property}</p>
@@ -185,7 +195,7 @@ export default function OwnerDashboard() {
           <div className="rounded-2xl border border-theme overflow-hidden" style={{ backgroundColor: "var(--bg-card)" }}>
             <div className="flex items-center justify-between px-5 py-4 border-b border-theme">
               <h3 className="font-semibold text-primary flex items-center gap-2">
-                <FileText size={16} style={{ color: "var(--accent)" }} /> সাম্প্রতিক নোটিশ
+                <FileText size={16} style={{ color: "var(--accent)" }} /> Recent Notices
               </h3>
             </div>
             <div className="p-4 space-y-3">
@@ -203,7 +213,7 @@ export default function OwnerDashboard() {
                           : { color: "#10b981", backgroundColor: "#d1fae5" }
                       }
                     >
-                      {notice.priority === "High" ? "জরুরি" : notice.priority === "Medium" ? "মধ্যম" : "সাধারণ"}
+                      {notice.priority === "High" ? "High" : notice.priority === "Medium" ? "Medium" : "Low"}
                     </span>
                   </div>
                   <p className="text-sm font-medium text-primary mb-1">{notice.title}</p>

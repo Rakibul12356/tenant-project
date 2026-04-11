@@ -3,27 +3,27 @@ import { useAuth } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 
 const STAT_ITEMS = [
-  { icon: DollarSign, label: "পরবর্তী বিল", value: "৳ 15,000", status: "এপ্রিল ৫", color: "#3b82f6" },
-  { icon: AlertCircle, label: "বিল বকেয়া", value: "০ টাকা", status: "পরিষ্কার", color: "#10b981" },
-  { icon: Wrench, label: "রক্ষণাবেক্ষণ অনুরোধ", value: "2", status: "অগ্রগামী", color: "#f59e0b" },
-  { icon: FileText, label: "আনপাঠানো নোটিশ", value: "1", status: "নতুন", color: "#ef4444" },
+  { icon: DollarSign, label: "Next Bill", value: "৳ 15,000", status: "Apr 5", color: "#3b82f6" },
+  { icon: AlertCircle, label: "Outstanding Balance", value: "৳ 0", status: "Clear", color: "#10b981" },
+  { icon: Wrench, label: "Maintenance Requests", value: "2", status: "In Progress", color: "#f59e0b" },
+  { icon: FileText, label: "Unread Notices", value: "1", status: "New", color: "#ef4444" },
 ];
 
 const MY_BILLS = [
-  { id: 1, month: "মার্চ ২০২৬", amount: "৳ 15,000", dueDate: "মার্চ ৩১", status: "Paid", paidDate: "মার্চ ২৮" },
-  { id: 2, month: "এপ্রিল ২০২৬", amount: "৳ 15,000", dueDate: "এপ্রিল ৫", status: "Pending", paidDate: null },
-  { id: 3, month: "মে ২০২৬", amount: "৳ 15,000", dueDate: "মে ৫", status: "Unpaid", paidDate: null },
+  { id: 1, month: "Mar 2026", amount: "৳ 15,000", dueDate: "Mar 31", status: "Paid", paidDate: "Mar 28" },
+  { id: 2, month: "Apr 2026", amount: "৳ 15,000", dueDate: "Apr 5", status: "Pending", paidDate: null },
+  { id: 3, month: "May 2026", amount: "৳ 15,000", dueDate: "May 5", status: "Unpaid", paidDate: null },
 ];
 
 const MY_NOTICES = [
-  { id: 1, title: "রেন্ট জমা দেওয়ার অনুস্মারক", date: "মার্চ ২৮", priority: "High", read: false },
-  { id: 2, title: "মেইনটেন্যান্স কাজ সম্পূর্ণ", date: "মার্চ ২৫", priority: "Low", read: true },
-  { id: 3, title: "পানির ট্যাংক পরিষ্কার করা হয়েছে", date: "মার্চ ২০", priority: "Low", read: true },
+  { id: 1, title: "Rent Payment Reminder", date: "Mar 28", priority: "High", read: false },
+  { id: 2, title: "Maintenance Work Completed", date: "Mar 25", priority: "Low", read: true },
+  { id: 3, title: "Water Tank Has Been Cleaned", date: "Mar 20", priority: "Low", read: true },
 ];
 
 const MAINTENANCE_REQUESTS = [
-  { id: 1, issue: "এয়ার কন্ডিশনার মেরামত", date: "মার্চ ২৭", status: "In Progress", priority: "High" },
-  { id: 2, issue: "রান্নাঘরের সিঙ্ক ঠিক করা", date: "মার্চ ২৫", status: "Completed", priority: "Medium" },
+  { id: 1, issue: "Air Conditioner Repair", date: "Mar 27", status: "In Progress", priority: "High" },
+  { id: 2, issue: "Kitchen Sink Fixed", date: "Mar 25", status: "Completed", priority: "Medium" },
 ];
 
 const STATUS_STYLES = {
@@ -38,11 +38,11 @@ export default function TenantDashboard() {
   const { user } = useAuth();
 
   const handlePayBill = (billId) => {
-    toast.success("বিল পেমেন্ট শীঘ্রই উপলব্ধ হবে...");
+    toast.success("Bill payment will be available soon...");
   };
 
   const handleSubmitMaintenance = () => {
-    toast.info("রক্ষণাবেক্ষণ অনুরোধ শীঘ্রই উপলব্ধ হবে...");
+    toast.info("Maintenance request feature is coming soon...");
   };
 
   return (
@@ -51,9 +51,9 @@ export default function TenantDashboard() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-xl font-bold text-primary">
-            আপনাকে স্বাগতম, {user?.name?.split(" ")[0]} 👋
+            Welcome, {user?.name?.split(" ")[0]} 👋
           </h2>
-          <p className="text-secondary text-sm mt-0.5">আপনার বিল, নোটিশ এবং রক্ষণাবেক্ষণ অনুরোধ পরিচালনা করুন</p>
+          <p className="text-secondary text-sm mt-0.5">Manage your bills, notices, and maintenance requests</p>
         </div>
       </div>
 
@@ -61,15 +61,15 @@ export default function TenantDashboard() {
       <div className="p-5 rounded-2xl border border-theme" style={{ backgroundColor: "var(--accent-light)" }}>
         <div className="flex items-start justify-between">
           <div>
-            <p className="text-xs font-semibold text-muted mb-1">আপনার সম্পত্তি</p>
+            <p className="text-xs font-semibold text-muted mb-1">Your Property</p>
             <h3 className="text-lg font-bold text-primary mb-1">{user?.propertyName}</h3>
-            <p className="text-sm text-secondary">মাসিক ভাড়া: <span className="font-semibold">{user?.rentAmount}</span></p>
+            <p className="text-sm text-secondary">Monthly rent: <span className="font-semibold">{user?.rentAmount}</span></p>
           </div>
           <div
             className="px-4 py-2 rounded-lg text-white font-semibold text-sm"
             style={{ backgroundColor: "var(--accent)" }}
           >
-            সক্রিয়
+            Active
           </div>
         </div>
       </div>
@@ -99,10 +99,10 @@ export default function TenantDashboard() {
           <div className="rounded-2xl border border-theme overflow-hidden" style={{ backgroundColor: "var(--bg-card)" }}>
             <div className="flex items-center justify-between px-5 py-4 border-b border-theme">
               <h3 className="font-semibold text-primary flex items-center gap-2">
-                <DollarSign size={16} style={{ color: "var(--accent)" }} /> আমার বিল
+                <DollarSign size={16} style={{ color: "var(--accent)" }} /> My Bills
               </h3>
               <span className="px-3 py-1 rounded-full text-xs font-semibold" style={{ backgroundColor: "var(--accent-light)", color: "var(--accent)" }}>
-                {MY_BILLS.length} টি
+                {MY_BILLS.length} items
               </span>
             </div>
             <div className="divide-y divide-theme">
@@ -111,7 +111,7 @@ export default function TenantDashboard() {
                   <div className="flex items-center justify-between mb-2">
                     <div>
                       <p className="text-sm font-semibold text-primary">{bill.month}</p>
-                      <p className="text-xs text-secondary mt-0.5">বকেয়া: {bill.dueDate}</p>
+                      <p className="text-xs text-secondary mt-0.5">Due: {bill.dueDate}</p>
                     </div>
                     <span
                       className="px-3 py-1 rounded-lg text-xs font-semibold"
@@ -120,7 +120,7 @@ export default function TenantDashboard() {
                         backgroundColor: STATUS_STYLES[bill.status].bg,
                       }}
                     >
-                      {bill.status === "Paid" ? "প্রদত্ত" : bill.status === "Pending" ? "অপেক্ষমান" : "অপরিশোধিত"}
+                      {bill.status === "Paid" ? "Paid" : bill.status === "Pending" ? "Pending" : "Unpaid"}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
@@ -131,12 +131,12 @@ export default function TenantDashboard() {
                         className="px-3 py-1.5 rounded-lg text-xs font-semibold text-white transition-all hover:opacity-90"
                         style={{ backgroundColor: "var(--accent)" }}
                       >
-                        এখনই পে করুন
+                        Pay Now
                       </button>
                     )}
                     {bill.status === "Paid" && (
                       <span className="text-xs text-muted flex items-center gap-1">
-                        <CheckCircle size={12} style={{ color: "#10b981" }} /> প্রদত্ত {bill.paidDate}
+                        <CheckCircle size={12} style={{ color: "#10b981" }} /> Paid {bill.paidDate}
                       </span>
                     )}
                   </div>
@@ -152,7 +152,7 @@ export default function TenantDashboard() {
           <div className="rounded-2xl border border-theme overflow-hidden" style={{ backgroundColor: "var(--bg-card)" }}>
             <div className="flex items-center justify-between px-5 py-4 border-b border-theme">
               <h3 className="font-semibold text-primary flex items-center gap-2">
-                <Bell size={16} style={{ color: "var(--accent)" }} /> নোটিশ
+                <Bell size={16} style={{ color: "var(--accent)" }} /> Notices
               </h3>
             </div>
             <div className="p-4 space-y-3">
@@ -178,7 +178,7 @@ export default function TenantDashboard() {
           <div className="rounded-2xl border border-theme overflow-hidden" style={{ backgroundColor: "var(--bg-card)" }}>
             <div className="flex items-center justify-between px-5 py-4 border-b border-theme">
               <h3 className="font-semibold text-primary flex items-center gap-2">
-                <Wrench size={16} style={{ color: "#f59e0b" }} /> মেরামত
+                <Wrench size={16} style={{ color: "#f59e0b" }} /> Maintenance
               </h3>
             </div>
             <div className="p-4 space-y-3">
@@ -193,7 +193,7 @@ export default function TenantDashboard() {
                         backgroundColor: STATUS_STYLES[req.status].bg,
                       }}
                     >
-                      {req.status === "In Progress" ? "চলছে" : "সম্পন্ন"}
+                      {req.status === "In Progress" ? "In Progress" : "Completed"}
                     </span>
                   </div>
                   <p className="text-xs text-secondary">{req.date}</p>
@@ -204,7 +204,7 @@ export default function TenantDashboard() {
                 className="w-full mt-2 px-3 py-2 rounded-lg font-semibold text-sm transition-all hover:opacity-90 text-white"
                 style={{ backgroundColor: "var(--accent)" }}
               >
-                নতুন অনুরোধ জমা দিন
+                Submit New Request
               </button>
             </div>
           </div>

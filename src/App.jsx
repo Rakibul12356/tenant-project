@@ -129,13 +129,13 @@ export default function App() {
               }
             >
               <Route index element={<OwnerDashboard />} />
-              <Route path="properties" element={<PlaceholderPage title="আমার সম্পত্তি" desc="আপনার সমস্ত সম্পত্তি এখানে দেখুন" />} />
-              <Route path="add" element={<PlaceholderPage title="নতুন বাড়ি যোগ করুন" desc="আপনার নতুন প্রপার্টি এখানে যোগ করুন" />} />
-              <Route path="tenants" element={<PlaceholderPage title="ভাড়াটে ম্যানেজমেন্ট" desc="আপনার সমস্ত ভাড়াটে এখানে দেখুন" />} />
-              <Route path="bills" element={<PlaceholderPage title="রেন্ট & বিল" desc="রেন্ট এবং বিল ম্যানেজমেন্ট" />} />
-              <Route path="notices" element={<PlaceholderPage title="নোটিশ" desc="নোটিশ ম্যানেজমেন্ট" />} />
+              <Route path="properties" element={<PlaceholderPage title="My Properties" desc="View all your properties here." />} />
+              <Route path="add" element={<PlaceholderPage title="Add Property" desc="Add a new property here." />} />
+              <Route path="tenants" element={<PlaceholderPage title="Tenant Management" desc="View and manage your tenants here." />} />
+              <Route path="bills" element={<PlaceholderPage title="Rent & Bills" desc="Manage rent and bills here." />} />
+              <Route path="notices" element={<PlaceholderPage title="Notices" desc="Manage notices here." />} />
               <Route path="profile" element={<UserProfile />} />
-              <Route path="settings" element={<PlaceholderPage title="সেটিংস" desc="আপনার সেটিংস এখানে পরিবর্তন করুন" />} />
+              <Route path="settings" element={<PlaceholderPage title="Settings" desc="Change your settings here." />} />
             </Route>
 
             {/* Admin Dashboard Routes */}

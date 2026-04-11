@@ -2,41 +2,41 @@ import { Users, Building2, DollarSign, TrendingUp, ArrowUpRight, Activity, Alert
 import { toast } from "react-toastify";
 
 const STATS = [
-  { icon: Building2, label: "মোট বারিওয়ালা", value: "152", change: "+12 this month", color: "#3b82f6" },
-  { icon: DollarSign, label: "মোট প্রপার্টি", value: "847", change: "+45 this month", color: "#10b981" },
-  { icon: Users, label: "সক্রিয় ভাড়াটে", value: "3,284", change: "+128 this week", color: "#f59e0b" },
-  { icon: TrendingUp, label: "মোট আয়", value: "৳ 15,42,000", change: "+8.5% this month", color: "#ec4899" },
+  { icon: Building2, label: "Total Landlords", value: "152", change: "+12 this month", color: "#3b82f6" },
+  { icon: DollarSign, label: "Total Properties", value: "847", change: "+45 this month", color: "#10b981" },
+  { icon: Users, label: "Active Tenants", value: "3,284", change: "+128 this week", color: "#f59e0b" },
+  { icon: TrendingUp, label: "Total Revenue", value: "৳ 15,42,000", change: "+8.5% this month", color: "#ec4899" },
 ];
 
 const RECENT_OWNERS = [
-  { id: 1, name: "মোহাম্মদ করিম", email: "karim@example.com", joined: "Mar 28", properties: 5, tenants: 8, status: "Active" },
-  { id: 2, name: "ফারহান রহিম", email: "farhan@example.com", joined: "Mar 25", properties: 3, tenants: 4, status: "Active" },
-  { id: 3, name: "আয়শা বেগম", email: "aysha@example.com", joined: "Mar 20", properties: 7, tenants: 9, status: "Pending" },
-  { id: 4, name: "রফিকুল ইসলাম", email: "rofiq@example.com", joined: "Mar 18", properties: 2, tenants: 3, status: "Active" },
-  { id: 5, name: "মিসেস খানা", email: "khana@example.com", joined: "Mar 15", properties: 4, tenants: 5, status: "Inactive" },
+  { id: 1, name: "Mohammad Karim", email: "karim@example.com", joined: "Mar 28", properties: 5, tenants: 8, status: "Active" },
+  { id: 2, name: "Farhan Rahim", email: "farhan@example.com", joined: "Mar 25", properties: 3, tenants: 4, status: "Active" },
+  { id: 3, name: "Ayesha Begum", email: "aysha@example.com", joined: "Mar 20", properties: 7, tenants: 9, status: "Pending" },
+  { id: 4, name: "Rafikul Islam", email: "rofiq@example.com", joined: "Mar 18", properties: 2, tenants: 3, status: "Active" },
+  { id: 5, name: "Mrs. Khana", email: "khana@example.com", joined: "Mar 15", properties: 4, tenants: 5, status: "Inactive" },
 ];
 
 const PENDING_VERIFICATIONS = [
-  { id: 1, name: "সালমান সাহেব", email: "salman@example.com", date: "Mar 27", docs: "Pending", action: "Review" },
-  { id: 2, name: "নাজমা বেগম", email: "najma@example.com", date: "Mar 26", docs: "Pending", action: "Review" },
-  { id: 3, name: "করিম ভাই", email: "karim2@example.com", date: "Mar 25", docs: "Approved", action: "Activate" },
+  { id: 1, name: "Salman", email: "salman@example.com", date: "Mar 27", docs: "Pending", action: "Review" },
+  { id: 2, name: "Najma", email: "najma@example.com", date: "Mar 26", docs: "Pending", action: "Review" },
+  { id: 3, name: "Karim", email: "karim2@example.com", date: "Mar 25", docs: "Approved", action: "Activate" },
 ];
 
 export default function AdminDashboard() {
   const handleApproveOwner = (id) => {
-    toast.success(`বারিওয়ালা #${id} অনুমোদিত হয়েছে`);
+    toast.success(`Landlord #${id} has been approved`);
   };
 
   const handleSuspendOwner = (id) => {
-    toast.warning(`বারিওয়ালা #${id} সাস্পেন্ড করা হয়েছে`);
+    toast.warning(`Landlord #${id} has been suspended`);
   };
 
   return (
     <div className="flex flex-col gap-6">
       {/* Header */}
       <div>
-        <h2 className="text-xl font-bold text-primary">প্রশাসন ওভারভিউ</h2>
-        <p className="text-secondary text-sm mt-0.5">আপনার সিস্টেমের সম্পূর্ণ ওভারভিউ দেখুন এবং বারিওয়ালাগুলি পরিচালনা করুন।</p>
+        <h2 className="text-xl font-bold text-primary">Admin Overview</h2>
+        <p className="text-secondary text-sm mt-0.5">View the full system overview and manage landlords.</p>
       </div>
 
       {/* Stats */}
@@ -59,20 +59,20 @@ export default function AdminDashboard() {
 
       {/* Main Content */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Owners/Bariwala Table */}
+        {/* Owners Table */}
         <div className="lg:col-span-2">
           <div className="rounded-2xl border border-theme overflow-hidden" style={{ backgroundColor: "var(--bg-card)" }}>
             <div className="flex items-center justify-between px-5 py-4 border-b border-theme">
               <h3 className="font-semibold text-primary flex items-center gap-2">
-                <Building2 size={16} style={{ color: "#3b82f6" }} /> সক্রিয় বারিওয়ালা
+                <Building2 size={16} style={{ color: "#3b82f6" }} /> Active Landlords
               </h3>
-              <button className="text-xs text-blue-500 hover:underline font-medium">সকল দেখুন</button>
+              <button className="text-xs text-blue-500 hover:underline font-medium">View All</button>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-theme" style={{ backgroundColor: "var(--bg-secondary)" }}>
-                    {["নাম", "ইমেইল", "প্রপার্টি", "ভাড়াটে", "যোগ দিন", "স্ট্যাটাস"].map((h) => (
+                    {["Name", "Email", "Properties", "Tenants", "Joined", "Status"].map((h) => (
                       <th key={h} className="px-5 py-3 text-left text-xs font-semibold text-muted uppercase tracking-wider">{h}</th>
                     ))}
                   </tr>
@@ -83,7 +83,7 @@ export default function AdminDashboard() {
                       <td className="px-5 py-3.5">
                         <div className="flex items-center gap-2.5">
                           <div
-                            className="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0"
+                            className="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold"
                             style={{ backgroundColor: "var(--accent)" }}
                           >
                             {o.name[0]}
@@ -106,7 +106,7 @@ export default function AdminDashboard() {
                               : { color: "#94a3b8", backgroundColor: "var(--bg-secondary)" }
                           }
                         >
-                          {o.status === "Active" ? "সক্রিয়" : o.status === "Pending" ? "অপেক্ষমান" : "নিষ্ক্রিয়"}
+                          {o.status === "Active" ? "Active" : o.status === "Pending" ? "Pending" : "Inactive"}
                         </span>
                       </td>
                     </tr>
@@ -120,8 +120,8 @@ export default function AdminDashboard() {
         {/* Pending Verifications */}
         <div className="rounded-2xl border border-theme overflow-hidden" style={{ backgroundColor: "var(--bg-card)" }}>
           <div className="flex items-center justify-between px-5 py-4 border-b border-theme">
-            <h3 className="font-semibold text-primary flex items-center gap-2">
-              <AlertCircle size={16} className="text-orange-500" /> অনুমোদনের অপেক্ষায়
+              <h3 className="font-semibold text-primary flex items-center gap-2">
+              <AlertCircle size={16} className="text-orange-500" /> Pending Approvals
             </h3>
           </div>
           <div className="p-4 space-y-3">
@@ -140,7 +140,7 @@ export default function AdminDashboard() {
                         : { color: "#10b981", backgroundColor: "#d1fae5" }
                     }
                   >
-                    {item.docs === "Pending" ? "অপেক্ষমান" : "অনুমোদিত"}
+                    {item.docs === "Pending" ? "Pending" : "Approved"}
                   </span>
                 </div>
                 <p className="text-xs text-secondary mb-2">{item.date}</p>
@@ -151,13 +151,13 @@ export default function AdminDashboard() {
                         onClick={() => handleApproveOwner(item.id)}
                         className="flex-1 px-2 py-1 rounded text-xs font-semibold text-white bg-green-600 hover:bg-green-700 transition"
                       >
-                        অনুমোদন
+                        Approve
                       </button>
                       <button
                         onClick={() => handleSuspendOwner(item.id)}
                         className="flex-1 px-2 py-1 rounded text-xs font-semibold text-red-600 border border-red-600 hover:bg-red-50 transition"
                       >
-                        প্রত্যাখ্যান
+                        Reject
                       </button>
                     </>
                   ) : (
@@ -165,7 +165,7 @@ export default function AdminDashboard() {
                       onClick={() => handleApproveOwner(item.id)}
                       className="w-full px-2 py-1 rounded text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 transition"
                     >
-                      সক্রিয় করুন
+                      Activate
                     </button>
                   )}
                 </div>

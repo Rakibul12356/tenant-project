@@ -7,7 +7,7 @@ const AuthContext = createContext(null);
 const DUMMY_USERS = [
   {
     id: 1,
-    name: "মোহাম্মদ করিম",
+    name: "Mohammad Karim",
     email: "owner@demo.com",
     password: "owner123",
     role: "owner",
@@ -19,13 +19,13 @@ const DUMMY_USERS = [
   },
   {
     id: 2,
-    name: "রফিকুল ইসলাম",
+    name: "Rafikul Islam",
     email: "tenant@demo.com",
     password: "tenant123",
     role: "tenant",
     avatar: "RI",
     joinedDate: "Feb 2024",
-    propertyName: "উত্তরা বাড়ি - ফ্ল্যাট ৫/A",
+    propertyName: "Uttara House - Flat 5/A",
     rentAmount: "৳ 15,000",
   },
   {
@@ -109,7 +109,7 @@ export function AuthProvider({ children }) {
 
     setUser(newUser);
     localStorage.setItem("auth_user", JSON.stringify(newUser));
-    toast.success(`${accountType === "owner" ? "বারিওয়ালা" : "ভাড়াটে"} অ্যাকাউন্ট তৈরি হয়েছে! স্বাগতম 🎉`);
+    toast.success(`${accountType === "owner" ? "Owner" : "Tenant"} account created successfully! Welcome 🎉`);
     setLoading(false);
     return { success: true, user: newUser };
   };

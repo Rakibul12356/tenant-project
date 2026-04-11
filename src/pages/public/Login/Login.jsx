@@ -3,6 +3,20 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Eye, EyeOff, Zap, LogIn } from "lucide-react";
 import { useAuth } from "../../../context/AuthContext";
 
+const getDashboardPath = (role) => {
+  if (role === "admin") return "/admin";
+  if (role === "owner") return "/owner";
+  return "/tenant";
+};
+
+const canAccessPath = (role, path) => {
+  if (!path) return false;
+  if (path === "/dashboard") return true;
+  if (role === "admin") return path.startsWith("/admin");
+  if (role === "owner") return path.startsWith("/owner");
+  return path.startsWith("/tenant");
+};
+
 export default function Login() {
   const { login, loading } = useAuth();
   const navigate = useNavigate();
@@ -18,12 +32,8 @@ export default function Login() {
     e.preventDefault();
     const result = await login(form.email, form.password);
     if (result.success) {
-      let dest = from;
-      if (!dest) {
-        if (result.user.role === "admin") dest = "/admin";
-        else if (result.user.role === "owner") dest = "/owner";
-        else dest = "/tenant";
-      }
+      const fallback = getDashboardPath(result.user.role);
+      const dest = canAccessPath(result.user.role, from) ? from : fallback;
       navigate(dest, { replace: true });
     }
   };
