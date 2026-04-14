@@ -8,30 +8,31 @@ const fadeUp = {
   show: { opacity: 1, y: 0 },
 };
 
+// টেক্সট কালার চেঞ্জিং অ্যানিমেশন
+const colorCycle = {
+  animate: {
+    color: [
+      "rgba(17, 24, 39, 0.9)", // Dark Gray
+      "rgba(37, 99, 235, 0.8)", // Blue
+      "rgba(79, 70, 229, 0.8)", // Indigo
+      "rgba(17, 24, 39, 0.9)", // Back to Dark Gray
+    ],
+    transition: {
+      duration: 8,
+      repeat: Infinity,
+      ease: "linear",
+    },
+  },
+};
+
 const HeroSection = () => {
   return (
-    <section className="relative h-screen flex items-center overflow-hidden bg-slate-50 px-4 sm:px-6 lg:px-8">
-      <motion.div
-        className="absolute inset-0 -z-10"
-        style={{
-          background:
-            "linear-gradient(120deg, rgba(219,234,254,0.9) 0%, rgba(241,245,249,0.85) 45%, rgba(209,250,229,0.9) 100%)",
-          backgroundSize: "180% 180%",
-        }}
-        animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute -top-20 -right-20 h-96 w-96 rounded-full bg-blue-300/30 blur-3xl -z-10"
-        animate={{ x: [0, -40, 0], y: [0, 30, 0], scale: [1, 1.08, 1] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute -bottom-24 -left-20 h-96 w-96 rounded-full bg-emerald-300/30 blur-3xl -z-10"
-        animate={{ x: [0, 35, 0], y: [0, -25, 0], scale: [1, 1.06, 1] }}
-        transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
-      />
-      
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+      {/* Background Glow */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl" />
+      </div>
+
       <div className="max-w-5xl mx-auto w-full text-center">
         
         {/* Small Tag */}
@@ -39,32 +40,35 @@ const HeroSection = () => {
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          transition={{ duration: 0.4 }}
-          className="mb-5 inline-flex items-center rounded-full border border-blue-200/70 bg-white/75 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-blue-700 shadow-sm backdrop-blur"
+          className="mb-5 inline-flex items-center rounded-full border border-blue-200/40 bg-white/60 px-3 py-1 text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-blue-600/70 shadow-sm backdrop-blur-sm"
         >
           PROPERTY MANAGEMENT PLATFORM
         </motion.p>
 
-        {/* Main Heading */}
+        {/* Main Heading with Color Changing Effect */}
         <motion.h1
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight tracking-tight"
+          className="text-4xl sm:text-5xl lg:text-7xl font-bold leading-[1.1] tracking-tight"
         >
-          Manage your properties
-          <br />
-          without the complexity
+          <motion.span 
+            variants={colorCycle} 
+            animate="animate"
+          >
+            Manage your properties
+          </motion.span>
+          <br className="hidden sm:block" />
+          <span className="text-gray-900/90"> without the complexity</span>
         </motion.h1>
 
-        {/* Sub text */}
+        {/* Sub text - Subtle RGBA Color */}
         <motion.p
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-6 text-lg text-gray-600 max-w-2xl mx-auto"
+          transition={{ delay: 0.2 }}
+          className="mt-8 text-base sm:text-xl text-gray-600/70 max-w-2xl mx-auto px-2 leading-relaxed"
         >
           Everything you need to manage tenants, track payments, and run your
           real estate business — all in one simple platform.
@@ -75,36 +79,28 @@ const HeroSection = () => {
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
+          transition={{ delay: 0.3 }}
+          className="mt-12 flex flex-col items-center gap-4 sm:flex-row sm:justify-center w-full"
         >
-          <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
+          <motion.div className="w-full sm:w-auto" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
             <Link
               to="/login"
-              className="inline-flex h-14 min-w-47.5 items-center justify-center gap-2 rounded-lg bg-gray-900 px-8 text-white transition hover:bg-gray-800"
+              className="flex h-14 w-full sm:min-w-[200px] items-center justify-center gap-2 rounded-xl bg-gray-900/95 px-8 text-white shadow-lg transition hover:bg-black"
             >
               <Key size={18} />
               Get Started
             </Link>
           </motion.div>
 
-          <motion.div whileHover={{ scale: 1.04 }}>
+          <motion.div className="w-full sm:w-auto" whileHover={{ scale: 1.02 }}>
             <Link
               to="/register"
-              className="inline-flex h-14 min-w-47.5 items-center justify-center rounded-lg border border-gray-300 px-8 font-medium text-gray-700 transition hover:bg-gray-100"
+              className="flex h-14 w-full sm:min-w-[200px] items-center justify-center rounded-xl border border-gray-300/50 bg-white/40 px-8 font-medium text-gray-700/80 backdrop-blur-sm transition hover:bg-white/80"
             >
               Create Account
             </Link>
           </motion.div>
         </motion.div>
-
-        {/* Subtle Divider */}
-        <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: "120px" }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="h-0.5 bg-gray-200 mx-auto mt-16"
-        />
       </div>
     </section>
   );
